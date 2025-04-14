@@ -1,1 +1,1 @@
-web: gunicorn xpenso.wsgi
+web: gunicorn xpenso.wsgi:application
