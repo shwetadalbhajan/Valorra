@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valorra – Elegant Finance Manager</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+
+      /* Hero heading animation */
+      .hero-title {
+        background: linear-gradient(to right, #ffffff, #a0aec0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Floating Labels */
+      .floating-label-group {
+        position: relative;
+      }
+      .floating-label {
+        position: absolute;
+        left: 1rem;
+        top: 0.9rem;
+        color: #aaa;
+        transition: 0.2s;
+        pointer-events: none;
+      }
+      input:focus + .floating-label,
+      input:not(:placeholder-shown) + .floating-label,
+      textarea:focus + .floating-label,
+      textarea:not(:placeholder-shown) + .floating-label {
+        transform: translateY(-1.2rem);
+        font-size: 0.75rem;
+        color: white;
+      }
+
+      .animated-underline::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        margin: 8px auto 0;
+        background: white;
+        transition: width 0.4s ease;
+      }
+
+      .animated-underline:hover::after {
+        width: 90px;
+      }
+
+      /* Hover card animation */
+      .hover-card:hover {
+        transform: translateY(-6px) scale(1.03);
+        box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+
+  <body class="bg-gradient-to-br from-gray-900 to-black text-white">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 backdrop-blur">
+      <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+        <div class="text-3xl font-bold text-white tracking-tight">Valorra</div>
+        <div class="flex space-x-4">
+          <a href="{% url 'login' %}" class="px-5 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 font-medium">Login</a>
+          <a href="{% url 'register' %}" class="px-5 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 font-medium">Register</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="pt-44 pb-32 text-center">
+      <div class="max-w-4xl mx-auto px-6" data-aos="fade-up">
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-8 hero-title">Master Your Money!</h1>
+        <p class="text-lg md:text-2xl text-gray-300 mb-6 leading-relaxed">Valorra isn’t just a finance tracker — it’s your personal wealth assistant. Monitor your income, analyze expenses, and make smarter financial decisions all in one elegant, intuitive dashboard.</p>
+        <p class="text-md md:text-lg text-gray-400 mb-10 max-w-2xl mx-auto">From budgeting to investments, from local currency to crypto — Valorra empowers you with real-time insights, smart automation, and peace of mind.</p>
+        <a href="{% url 'register' %}" class="bg-white text-black px-8 py-4 text-lg rounded-full hover:bg-gray-200 hover:scale-110 transition-transform duration-300 font-medium shadow-md">Get Started Free</a>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-semibold text-center mb-16 animated-underline" data-aos="fade-up">Features</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+          <!-- Feature Cards -->
+          <div class="bg-black/30 p-6 rounded-xl backdrop-blur border border-white/10 transition-all duration-300 transform hover-card" data-aos="fade-up" data-aos-delay="100">
+            <i class="bi bi-speedometer2 text-3xl mb-4 text-white/90"></i>
+            <h3 class="text-xl font-semibold mb-2">Live Insights</h3>
+            <p class="text-sm text-gray-300">Track your financial journey in real-time with beautiful visualizations.</p>
+          </div>
+          <div class="bg-black/30 p-6 rounded-xl backdrop-blur border border-white/10 transition-all duration-300 transform hover-card" data-aos="fade-up" data-aos-delay="200">
+            <i class="bi bi-globe2 text-3xl mb-4 text-white/90"></i>
+            <h3 class="text-xl font-semibold mb-2">Multi-Currency</h3>
+            <p class="text-sm text-gray-300">Supports 100+ currencies with automatic conversions at current rates.</p>
+          </div>
+          <div class="bg-black/30 p-6 rounded-xl backdrop-blur border border-white/10 transition-all duration-300 transform hover-card" data-aos="fade-up" data-aos-delay="300">
+            <i class="bi bi-bar-chart text-3xl mb-4 text-white/90"></i>
+            <h3 class="text-xl font-semibold mb-2">Analytics</h3>
+            <p class="text-sm text-gray-300">Visual reports and intelligent budgeting insights tailored to you.</p>
+          </div>
+          <div class="bg-black/30 p-6 rounded-xl backdrop-blur border border-white/10 transition-all duration-300 transform hover-card" data-aos="fade-up" data-aos-delay="400">
+            <i class="bi bi-lock text-3xl mb-4 text-white/90"></i>
+            <h3 class="text-xl font-semibold mb-2">Military-grade Security</h3>
+            <p class="text-sm text-gray-300">Your data stays safe, encrypted, and only visible to you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-28">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-semibold text-center mb-16 animated-underline" data-aos="fade-up">What Users Say</h2>
+        <div class="grid md:grid-cols-3 gap-10">
+          <div class="bg-white/10 p-6 rounded-xl border border-white/10 backdrop-blur transition-all duration-300 transform hover-card" data-aos="zoom-in" data-aos-delay="100">
+            <p class="text-gray-300 mb-4">"The only finance tool that doesn’t feel like a spreadsheet. Clean, elegant, useful."</p>
+            <div class="font-medium text-white">— Sarah L.</div>
+          </div>
+          <div class="bg-white/10 p-6 rounded-xl border border-white/10 backdrop-blur transition-all duration-300 transform hover-card" data-aos="zoom-in" data-aos-delay="200">
+            <p class="text-gray-300 mb-4">"Valorra feels like the future of personal finance. The UI is just stunning."</p>
+            <div class="font-medium text-white">— Ahmed K.</div>
+          </div>
+          <div class="bg-white/10 p-6 rounded-xl border border-white/10 backdrop-blur transition-all duration-300 transform hover-card" data-aos="zoom-in" data-aos-delay="300">
+            <p class="text-gray-300 mb-4">"Tracking expenses actually became enjoyable for once. 10/10."</p>
+            <div class="font-medium text-white">— Zoe R.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-28">
+      <div class="max-w-2xl mx-auto px-6 text-center" data-aos="fade-up">
+        <h2 class="text-4xl font-semibold mb-12 animated-underline">Let’s Talk</h2>
+        <form class="space-y-6" action="{% url 'submit_contact' %}" method="POST">
+          {% csrf_token %}
+          <div class="floating-label-group">
+            <input name="name" type="text" placeholder=" " class="w-full px-4 py-3 rounded-md bg-black/30 text-white placeholder-transparent border border-white/10 focus:ring-2 focus:ring-white focus:outline-none" />
+            <label class="floating-label">Your Name</label>
+          </div>
+          <div class="floating-label-group">
+            <input name= "email" type="email" placeholder=" " class="w-full px-4 py-3 rounded-md bg-black/30 text-white placeholder-transparent border border-white/10 focus:ring-2 focus:ring-white focus:outline-none" />
+            <label class="floating-label">Your Email</label>
+          </div>
+          <div class="floating-label-group">
+            <textarea name="message" rows="4" placeholder=" " class="w-full px-4 py-3 rounded-md bg-black/30 text-white placeholder-transparent border border-white/10 focus:ring-2 focus:ring-white focus:outline-none"></textarea>
+            <label class="floating-label">Your Message</label>
+          </div>
+          <button type="submit" class="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-200 hover:scale-110 transition-transform duration-300 shadow-md font-medium">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-gray-400 text-center py-6">
+      <p class="text-sm">&copy; 2025 Valorra. Crafted with care and clarity.</p>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 800, once: true });
+    </script>
+  </body>
+</html>

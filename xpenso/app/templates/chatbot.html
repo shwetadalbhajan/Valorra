@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" class="{{ request.user.theme_preference }}-mode">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask Lumi - Valorra</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .light-mode {
+      --bg: #f1f5f9;
+      --text: #111827;
+      --card: #ffffff;
+      --border: #9ca3af;
+      --hover: #e2e8f0;
+      --nav-hover: #6366f1;
+    }
+
+    .dark-mode {
+      --bg: #0f172a;
+      --text: #f1f5f9;
+      --card: #1e293b;
+      --border: #334155;
+      --hover: #1f2937;
+      --nav-hover: #8b5cf6;
+    }
+
+    html {
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    .card {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      height: 100vh;
+      width: 260px;
+      z-index: 50;
+      background-color: var(--card);
+      border-right: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      transition: left 0.3s ease;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--nav-hover);
+    }
+
+    .sidebar a {
+      font-size: 1.1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      transition: all 0.3s ease;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .sidebar a:hover {
+      background-color: var(--hover);
+      color: var(--nav-hover);
+      font-weight: 600;
+      transform: translateX(5px);
+    }
+
+    .main-content {
+      margin-left: 0;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .sidebar {
+        left: 0;
+      }
+      .main-content {
+        margin-left: 260px;
+        padding: 3rem 4rem;
+      }
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+
+    .alert {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-menu-btn {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 40;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 30;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- Mobile Menu Button -->
+  <button class="mobile-menu-btn lg:hidden" id="menuButton">
+    <i class="bi bi-list text-xl"></i>
+  </button>
+
+  <!-- Overlay for mobile menu -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <h2>Valorra</h2>
+    <ul class="space-y-3 font-semibold">
+      <li><a href="{% url 'dashboard' %}"><i class="bi bi-house-door-fill"></i> Dashboard</a></li>
+      <li><a href="{% url 'transactions' %}"><i class="bi bi-journal-text"></i> Transactions</a></li>
+      <li><a href="{% url 'manage_budget' %}"><i class="bi bi-wallet2"></i> Manage Budget</a></li>
+      <li><a href="{% url 'market' %}"><i class="bi bi-graph-up-arrow"></i> Market</a></li>
+      <li><a href="{% url 'settings' %}"><i class="bi bi-gear-fill"></i> Settings</a></li>
+      <li><a href="{% url 'chatbot' %}"><i class="bi bi-chat-dots-fill"></i> Ask Lumi</a></li>
+      <li><a href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Page Header -->
+    <div class="mb-6 lg:mb-10">
+      <h1 class="text-3xl lg:text-4xl font-bold leading-snug mb-1">Ask Lumi 💬</h1>
+      <p class="text-sm text-gray-500 dark:text-gray-400">Your personal AI assistant for managing finances smarter.</p>
+    </div>
+
+    <!-- Chat Section -->
+    <section class="card p-4 lg:p-8 w-full max-w-6xl mx-auto shadow-md">
+      <form method="post" class="space-y-4 lg:space-y-5">
+        {% csrf_token %}
+        <textarea name="message" rows="5" class="w-full p-3 lg:p-4 border border-[var(--border)] rounded-xl bg-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 transition resize-none" placeholder="Ask me anything...">{{ user_input }}</textarea>
+        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-xl shadow-md transition w-full lg:w-auto">
+          <i class="bi bi-send-fill"></i> Send
+        </button>
+      </form>
+
+      {% if formatted_response %}
+      <div class="mt-4 lg:mt-6 border-t pt-3 lg:pt-4 border-[var(--border)]">
+        <h3 class="text-lg lg:text-xl font-semibold mb-2 text-indigo-500"><i class="bi bi-robot"></i> Lumi:</h3>
+        <div class="text-base leading-relaxed space-y-2 lg:space-y-3 prose prose-indigo dark:prose-invert max-w-none">
+          {{ formatted_response|safe }}
+        </div>
+      </div>
+      {% endif %}
+    </section>
+  </main>
+
+  <script>
+    // Mobile menu toggle
+    const menuButton = document.getElementById('menuButton');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    menuButton.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
