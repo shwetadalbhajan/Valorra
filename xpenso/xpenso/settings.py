@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m6mh3r=3o-5187u5kpxnk(91h*y1itjwjnb(tradf=&8_@_e1)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -141,3 +141,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 ALPHA_VANTAGE_API_KEY = 'GY4ASJQ4CIPSO8Q2'
 
 CURRENCY_API_KEY='fca_live_uvpRZhgejJkX7iBvbaN3U14KKQkvEhEn4admRZ6o'
+
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
