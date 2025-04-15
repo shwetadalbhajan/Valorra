@@ -25,7 +25,17 @@ SECRET_KEY = 'django-insecure-m6mh3r=3o-5187u5kpxnk(91h*y1itjwjnb(tradf=&8_@_e1)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['your-render-app-name.onrender.com']
+from pathlib import Path
+import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your-fallback-key')
+
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+
+ALLOWED_HOSTS = [os.environ.get('RENDER_EXTERNAL_HOSTNAME', 'localhost')]
+
 
 
 # Application definition
