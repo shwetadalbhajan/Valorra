@@ -2,7 +2,7 @@
 
 Valorra is an all-in-one personal finance management web app designed to help everyday people take full control of their money. From tracking income and expenses to budgeting smartly, analyzing spending patterns, and even monitoring investments—Valorra brings everything together in one clean, user-friendly platform. Unlike basic budgeting tools, it doesn’t stop at tracking. It gives users insights and clarity, helping them build better financial habits over time.
 
-# Features
+## Features
 - Registration – User sign-up with email and OTP verification
 - Login/Logout – Secure authentication and session management
 - Password Reset – OTP-based password recovery
@@ -22,7 +22,7 @@ Valorra is an all-in-one personal finance management web app designed to help ev
 - User Settings – Manage profile and currency preference
 - Security – Authentication, authorization, and data protection
 
-# Technology Used
+## Technology Used
 - Frontend: HTML, CSS, Javascript, Bootstrap.
 - Backend: Python, Django Framework.
 - APIs: FreeCurrency, Yfinance, CCXT, Groq.
